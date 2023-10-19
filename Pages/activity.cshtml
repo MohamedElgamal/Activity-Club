@@ -1,0 +1,94 @@
+﻿@page
+@model ActivityModel
+@{
+}
+
+<head>
+    <script src="~/js/acitivty.js"></script>
+
+</head>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+                    </li>
+                    </li
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+<table>
+		<tr>
+        	<th>Name</th>
+            <th>Description</th>
+            <th>Start Age</th>
+            <th>End Age</th>
+            <th>Skills</th>
+            <th>Action</th>
+         </tr>
+    @foreach(var activity in Model.Activities)
+    {
+        <tr>
+            <td>@activity.ActivityName</td>
+            <td>@activity.ActivityDescription</td>
+            <td>@activity.ActivityStartAge</td>
+            <td>@activity.ActivityEndAge</td>
+            <td>
+                @foreach(var skill in activity.Skills)
+                {
+                    <div>@skill.SkillName</div>
+                }
+            </td>
+            <td>
+                <form asp-page="Activity" asp-page-handler="ActivityRemove">
+                    <button class="btn btn-primary-red" type="submit" name="activityname" value="@activity.ActivityName">Remove</button>
+                </form>
+                <form asp-page="Activity" asp-page-handler="ActivityUpdate">
+                    <input style="display : none ; " name="action-mode" value="display">
+                    <button class="btn btn-primary" type="submit" name="activityid" value="@activity.ActivityId">update</button>
+                </form>
+            </td>
+        </tr>
+    }
+	</table>
+<div  class="container" >
+    <form asp-page="Activity" asp-page-handler="ActivityAdd" onsubmit="return validateForm()" name="activityform" method="post">
+        <input name="activity_name" type="text" placeholder ="Activity Name">
+        <input name="activity_description" type="text" placeholder="Activity Description">
+        <input name="activity_start_age" type="text" placeholder="Activity Start Age">
+        <input name="activity_end_age" type="text" placeholder="Activity End Age"><br>
+        @foreach (var skill in Model.Skills)
+        {
+            <div class="form-check">
+                <input name="activity-skills" type="checkbox" id="@skill.SkillId" value="@skill.SkillId" class="form-check-input">
+                <label class="form-check-label"> @skill.SkillName</label>
+            </div>    
+        }
+        <div class="form-buttons-area">
+            <button class ="btn btn-primary"  id='add-activity' type="submit">Add</button>
+            <button style="width : 150px" class="btn btn-primary-red"  type="reset">Reset Data</button>
+        </div>
+    </form>
+</div>

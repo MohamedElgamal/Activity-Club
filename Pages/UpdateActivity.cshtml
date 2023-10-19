@@ -1,0 +1,79 @@
+﻿@page "{activityId}"
+@model Activity_Club.Pages.UpdateActivityModel
+@{
+}
+<head>
+    <script src="~/js/acitivty.js"></script>
+
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+                    </li>
+                    </li
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class=".container-update">
+    <div class="add-member-container">
+        <form name="activityform" onsubmit="return validateForm()" asp-action="UpdateActivity" method="post">
+
+            <input style="display: none" name="activity_id" value="@Model.Activity.ActivityId" />
+            <div class="form-group">
+                <label for="activity_name">Activity Name</label>
+                <input id="activity_name" name="activity_name" type="text" value="@Model.Activity.ActivityName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="activity_description">Description</label>
+                <input id="activity_description" name="activity_description" type="text" value="@Model.Activity.ActivityDescription" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="activity_start_age">Start Age</label>
+                <input id="activity_start_age" name="activity_start_age" type="text" value="@Model.Activity.ActivityStartAge" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="activity_end_age">End Age</label>
+                <input id="activity_end_age" name="activity_end_age" type="text" value="@Model.Activity.ActivityEndAge" class="form-control">
+            </div>
+            @if (Model.Skill != null)
+            {
+                <div class="form-group">
+                    <label>Activity Skills</label>
+                    @foreach (var skill in Model.Skill)
+                    {
+                        <div class="form-check">
+                            <input name="activity-skills" type="checkbox" id="@skill.SkillId" @(skill.IsSkillContained(Model.ActivitySkills) ? "checked" : "") value="@skill.SkillId" class="form-check-input">
+                            <label class="form-check-label" for="@skill.SkillId">@skill.SkillName</label>
+                        </div>
+                    }
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+

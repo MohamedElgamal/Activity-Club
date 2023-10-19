@@ -1,0 +1,33 @@
+﻿@page 
+@model Authentication.Pages.LoginModel
+@{
+    
+}
+
+<head>
+    <script src="~/js/login.js"></script>
+
+</head>
+<div class="App">
+    <div class="parent">
+        <div class="heading-text">
+            <p class='heading'>Welcome</p>
+            <p class='sub-heading'>it's great to have you back!</p>
+        </div>
+        <form class="login-form" asp-action="Login" method="post" onsubmit="checkForm(event)">
+            <label>Username</label>
+            <input name="username" id="username" placeholder="Enter Username" type="text" />
+            <label>PASSWORD</label>
+            <input name="password" id="password" placeholder="Enter the Password" type="password" />
+            <div class="button-section">
+                <button id='login-btn' type="submit">Login</button>
+                <button type="reset" id='create-btn'>Reset</button>
+            </div>
+        </form>
+        <div class="error-message sub-heading">
+            @Model.ErrorMsg
+        </div>
+    </div>
+
+
+</div>

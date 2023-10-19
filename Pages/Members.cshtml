@@ -1,0 +1,106 @@
+﻿@page
+@model Activity_Club.Pages.MembersModel
+@{
+}
+<head>
+    <script src="~/js/member.js"></script>
+
+</head>
+
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+                    </li>
+                    </li
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>SSN</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th>Skills</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach(var member in Model.Members)
+    {
+       
+        <tr>
+            <td>
+                <div class="rounded-image"><img src="data:image/jpg;base64,@member.MemberImageBase64" /></div>
+            </td>
+            <td><p class="@member.MemberEmail">@member.MemberName</p></td>
+            <td><p class="@member.MemberEmail">@member.MemberSsn</p></td>
+            <td><p class="@member.MemberEmail">@member.MemberPhoneNumber </p></td>
+            <td><p class="@member.MemberEmail">@member.MemberEmail </p></td>
+            <td><p class="@member.MemberEmail">@member.MemberDate</p></td>
+            <td><p class="@member.MemberEmail">@member.MemberAddress</p></td>
+            <td>
+                @foreach(var skill in member.Skills)
+                {
+                    <div>@skill.SkillName</div>
+
+                }
+            </td>
+            <td>
+                <form asp-page="Members" asp-page-handler="RemoveMember">
+                    <button class="btn btn-primary-red" type="submit" name="memberId" value="@member.MemberId">Remove</button>
+                </form>
+                <form asp-page="Members" asp-page-handler="UpdateMember">
+                    <button class="btn btn-primary"  type="submit" name="memberid" value="@member.MemberId">update</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table> 
+<div class="container">
+    <form asp-page="Members" asp-page-handler="MemberAdd" onsubmit="return validateForm()" name="memberform" enctype="multipart/form-data" method="post">
+        <input name="member_name" placeholder="Enter Member Name" type="text">
+        <input name="member_ssn" placeholder="Enter Member SSN" type="text">
+        <input name="member_phone" placeholder="Enter Member Phone" type="text">
+        <input name="member_email" placeholder="Enter Member Email" type="text">
+        <input name="member_address" placeholder="Enter Member Address" type="text">
+        <input name="member_date" type="date" />
+        <input name="member_photo" type="file" size="50" /><br>
+        @foreach (var skill in Model.Skills)
+        {
+            <div class="form-check">
+                <input class="form-check-input" name="member-skills" type="checkbox" id="@skill.SkillId" value="@skill.SkillId">
+                <label class="form-check-label">@skill.SkillName</label>
+            </div>
+        }
+        <div class="form-buttons-area">
+            <button class="btn btn-primary"  id='add-activity' type="submit">Add</button>
+            <button style= "width : 150px" class ="btn btn-primary-red" type="reset">Reset Data</button>
+        </div>
+    </form>
+</div>

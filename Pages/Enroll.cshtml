@@ -1,0 +1,88 @@
+﻿@page
+@model Activity_Club.Pages.EnrollModel
+@{
+}
+
+<header>
+	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<div class="container">
+			<a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+				<ul class="navbar-nav flex-grow-1">
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+					</li>
+					</li
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+
+
+
+<table>
+	<tr>
+		<th>Member Name</th>
+		<th>Member Age</th>
+		<th>Activities</th>
+	</tr>
+	<div class="error-msg">
+		@Model.ErrorMsg
+	</div>
+	@foreach(var member in Model.Members)
+	{
+		<tr>
+			<td><p>@member.MemberName</p></td>
+			<td><p>@member.MemberDate.ToString("MMM  dd/yyyy")</p></td>
+			<td>
+				<form asp-action="Enroll" method="post">
+					<select name="selectActivity">
+						@foreach(var activity in Model.Activities)
+						{
+							<option value="@activity.ActivityName">@activity.ActivityName</option>
+
+						}
+					</select>
+					<button class="btn btn-primary"  type="submit" name="memberName" value="@member.MemberName">Enroll</button>
+				</form>
+			</td>
+		</tr>
+	}
+</table>
+
+<h2>Members enrolled activity </h2>
+<table>
+	<tr>
+		<th>Member Name</th>
+		<th>Activities</th>
+		<th>Action</th>
+	</tr>
+	@foreach (var enroll in Model.Enrolls)
+	{
+		<tr>
+			<td><p>@enroll.MemberName</p></td>
+			<td><p>@enroll.ActivityName</p></td>
+			<td>
+				<form asp-page="Enroll" asp-page-handler ="DisjoinActivity" method="post">
+					<input type="text" name="enrollActivityName" value="@enroll.ActivityName" style="display: none;">
+					<button class="btn btn-primary-red " type="submit" name="enrollMemberName" value="@enroll.MemberName">Disjoin</button>
+				</form>
+			</td>
+		</tr>
+	}
+</table>

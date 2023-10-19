@@ -1,0 +1,93 @@
+﻿@page "{memberid}"
+@model Activity_Club.Pages.UpdateMemberModel
+@{
+}
+
+<head>
+	<script src="~/js/member.js"></script>
+
+</head>
+
+
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+                    </li>
+                    </li
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+<div class=".container-update">
+    <div class="add-member-container">
+        <form name="memberform" onsubmit="return validateForm()" class="add-member-form" asp-action="UpdateMember" enctype="multipart/form-data" method="post">
+            <input style="display: none" name="member_id" value="@Model.Member.MemberId" />
+            <div class="form-group">
+                <label for="member_name">Member Name</label>
+                <input id="member_name" name="member_name" value="@Model.Member.MemberName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_ssn">Member SSN</label>
+                <input id="member_ssn" name="member_ssn" value="@Model.Member.MemberSsn" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_phone">Member Phone</label>
+                <input id="member_phone" name="member_phone" value="@Model.Member.MemberPhoneNumber" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_email">Member Email</label>
+                <input id="member_email" name="member_email" value="@Model.Member.MemberEmail" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_address">Member Address</label>
+                <input id="member_address" name="member_address" value="@Model.Member.MemberAddress" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_date">Member DOB</label>
+                <input id="member_date" value="@Model.Member.MemberDate.ToString("yyyy-MM-dd")" name="member_date" type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="member_photo">Member Photo</label>
+                <input id="member_photo" name="member_photo" type="file" size="50" class="form-control-file">
+            </div>
+            @if (Model.Skill != null)
+            {
+                <div class="form-group">
+                    <label>Member Skills</label>
+                    @foreach (var skill in Model.Skill)
+                    {
+                        <div class="form-check">
+                            <input name="member_skills" type="checkbox" id="@skill.SkillId" @(skill.IsSkillContained(Model.MemberSkills) ? "checked" : "") value="@skill.SkillId" class="form-check-input">
+                            <label class="form-check-label" for="@skill.SkillId">@skill.SkillName</label>
+                        </div>
+                    }
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

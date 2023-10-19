@@ -1,0 +1,68 @@
+﻿@page
+@model Activity_Club.Pages.SkillModel
+@{
+}
+
+<head>
+    <script src="~/js/skill.js"></script>
+
+</head>
+
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Activity_Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Members">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Enroll">Enroll</a>
+                    </li>
+                    </li
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Skill">Skill</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<div class="container">
+	<div class="add-skills-containers">
+		<form name="skillsform" onsubmit="return validateForm()" class="add-skills-form" asp-action="Skill" method="post">
+			<input name="skillName" placeholder="Enter Skill Name" type="text">
+			<div class="form-buttons-area">
+                <button class="btn btn-primary"  class="button" id='add-skill' type="submit">Add</button>
+                <button style="width : 150px" class="btn btn-primary-red" class="button" type="reset">Reset Data</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<table>
+    <tr>
+        <th>Skill Name</th>
+    </tr>
+    @foreach (var skill in Model.Skills)
+    {
+        <tr>
+            <td>
+                <p>@skill.SkillName</p>
+            </td>
+        </tr>
+    }
+  
+</table> 
