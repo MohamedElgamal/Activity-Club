@@ -1,0 +1,291 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/******************Written Style ***************************************/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+/*    max-width: 800px;
+*/    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+
+.container .add-activity-form {
+    margin-bottom: 20px;
+}
+
+    .container .add-activity-form input[type="text"],
+    .container .add-activity-form input[type="checkbox"],
+    .container .add-activity-form label {
+        margin-bottom: 10px;
+    }
+
+.container .form-buttons-area {
+    text-align: right;
+}
+
+.container .error-msg {
+    color: red;
+    margin-bottom: 10px;
+}
+
+#update-activity-container {
+    display: none;
+}
+
+.rounded-image {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid #6881db;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+    .rounded-image img {
+        width: 75px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+
+    /*********Auto Generated style*************/
+
+.container-update {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.add-member-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.add-member-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-control-file {
+    width: 100%;
+    padding: 10px;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    margin-top: 10px;
+
+}
+.btn-primary-red {
+    margin-top: 10px;
+    background: #ff4148;
+}
+
+.activity-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .button:hover {
+        background-color: #3e8e41;
+    }
+
+/*****************login Style**********************/
+
+
+.App {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent {
+    max-width: 500px;
+    width: 100%;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.heading-text {
+    margin-bottom: 2rem;
+}
+
+.heading {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.sub-heading {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.button-section {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+/*    padding: 0.75rem 1.5rem;
+*/    
+    padding : 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 5.5em;
+}
+.btn-red {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background : red;
+}
+
+
+
+
+.button-section {
+    margin-top: 17px;
+    display: flex;
+    flex-direction: row;
+}
+
+    .button-section button {
+        width: 150px;
+        padding: 10px 17px;
+        margin: 7px 15px;
+        font-size: 0.7em;
+        text-transform: uppercase;
+        border-radius: 5px;
+        border: none;
+        font-weight: bold;
+    }
+
+#login-btn, #create-btn:hover {
+    background-color: #dd27b2;
+    color: white;
+}
+
+    #create-btn, #login-btn:hover {
+        color: #dd27b2;
+        background-color: white;
+        border: 2px solid #dd27b2;
+    }
+
+.error-message {
+    margin-top: 1rem;
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
